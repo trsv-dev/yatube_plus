@@ -50,5 +50,11 @@ pip install -r requirements.txt
 ```
 python3 manage.py runserver
 ```
+- Выполните миграции:
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
 ### Авторы
 [trsv-dev](https://github.com/trsv-dev)
