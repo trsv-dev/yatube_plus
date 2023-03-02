@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+  Лайкнутые записи
+{% endblock %}
+{% block content %}
+  {% include 'posts/includes/switcher.html' %}
+        {% if not page_obj %}
+            <h1>Лайки</h1>
+            Лайкните пост и он появится здесь
+        {% endif %}
+        {% for post in page_obj %}
+          {% include 'posts/includes/post_card.html' %}
+        {% endfor %}
+      {% include 'posts/includes/paginator.html' %}
+{% endblock %}

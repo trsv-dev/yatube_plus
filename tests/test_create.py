@@ -20,7 +20,7 @@ class TestCreateView:
             response = user_client.get('/create/')
         assert response.status_code != 404, 'Страница `/create/` не найдена, проверьте этот адрес в *urls.py*'
         assert 'form' in response.context, 'Проверьте, что передали форму `form` в контекст страницы `/create/`'
-        fields_cnt = 3
+        fields_cnt = 4
         assert len(response.context['form'].fields) == fields_cnt, (
             f'Проверьте, что в форме `form` на страницу `/create/` {fields_cnt} поля'
         )

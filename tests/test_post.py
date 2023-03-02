@@ -154,7 +154,7 @@ class TestPostEditView:
         assert 'form' in response.context, (
             'Проверьте, что передали форму `form` в контекст страницы `/posts/<post_id>/edit/`'
         )
-        fields_cnt = 3
+        fields_cnt = 4
         assert len(response.context['form'].fields) == fields_cnt, (
             f'Проверьте, что в форме `form` на страницу `/posts/<post_id>/edit/` {fields_cnt} поля'
         )

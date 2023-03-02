@@ -1,0 +1,34 @@
+{% load markdown_extras %}
+{% load thumbnail %}
+<h3><b>{{ post.title }}</b></h3>
+<article>
+  <ul>
+    {% if not author %}
+    <li>
+      Автор: {{ post.author.get_full_name }}
+      <a href="{% url 'posts:profile' post.author.username %}">все посты пользователя</a>
+    </li>
+    {% endif %}
+    <li>
+      Дата публикации: {{ post.pub_date|date:"d E Y" }}
+    </li>
+  </ul>
+    {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+      <img class="card-img my-2" src="{{ im.url }}">
+    {% endthumbnail %}
+    {% if post.text|length > 600 %}
+      <p>{{ post.text | markdown | safe | truncatechars:600 }}</p>
+    {% else %}
+      <p>{{ post.text | markdown | safe }}</p>
+    {% endif %}
+</article>
+    {% include 'posts/includes/like_card.html' %}
+    <br>
+    <a href="{% url 'posts:post_detail' post.pk %}">подробная информация</a>
+    <br>
+
+  {% if not group and post.group %}
+    <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
+  {% endif %}
+  {% if not forloop.last %}<hr>{% endif %}
+

@@ -1,0 +1,55 @@
+<!-- Форма добавления комментария -->
+{% load markdown_extras %}
+{% load user_filters %}
+
+{% if not comments %}
+    <h5>Комментариев нет</h5>
+    {% else %}
+        <h5>Комментарии ({{ comments.count }}):</h5>
+{% endif %}
+<br>
+{% for comment in comments %}
+      <div class="media mb-4">
+        <div class="media-body">
+          <h5 class="mt-0">
+            <a href="{% url 'posts:profile' comment.author.username %}">
+              {{ comment.author.username }}
+            </a>
+              , <small>{{comment.pub_date}}</small>
+          </h5>
+          <p>
+            {{ comment.text | markdown | safe }}
+            <p>
+              {% if user.username == comment.author.username %}
+                <a class="btn btn-primary btn-sm" href="{% url 'posts:delete_comment' comment.id %}">
+              Удалить
+              </a>
+            </p>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+{% endfor %}
+
+
+{% if user.is_authenticated %}
+  <div class="card my-4">
+    <h5 class="card-header">Добавить комментарий:</h5>
+    <div class="card-body">
+      <form method="post" action="{% url 'posts:add_comment' post.id %}">
+        {% csrf_token %}
+          {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <strong{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</strong>
+                {% endfor %}
+            </ul>
+          {% endif %}
+        <div class="form-group mb-2">
+          {{ form.text|addclass:"form-control" }}
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+      </form>
+    </div>
+  </div>
+{% endif %}
