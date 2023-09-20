@@ -1,6 +1,5 @@
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/-Django-464646?style=flat-square&logo=Django)](https://www.djangoproject.com/)
-[![CI](https://github.com/yandex-praktikum/hw02_community/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw02_community/actions/workflows/python-app.yml)
 
 ![](screenshot.png)
  # Yatube Plus. Социальная сеть блогеров
@@ -38,6 +37,7 @@
 Нормальный ресайз картинок, подписи к картинкам, markdown-редактор WYSIWYG хотя бы в админке, профили пользователей с аватарами, возможно лайки комментариев и их редактирование.
 ### Технологии
 Python 3.9
+
 Django 2.2.19
 ### Запуск проекта в dev-режиме
 - Установите виртуальное окружение:
