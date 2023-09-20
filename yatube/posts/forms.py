@@ -39,7 +39,6 @@ class FilterBadWords:
     Фильтрация 'плохих' слов на основе словаря замен схожих
     символов и расстояния Левенштейна
     """
-    bad_words = [*[one.word for one in BadWords.objects.all()]]
 
     mydict = {
         'а': ['а', 'a', '@'],
@@ -80,10 +79,13 @@ class FilterBadWords:
     def __init__(self):
         self.raw_phrase = None
 
-    def censor(self, phrase):
+    def get_bad_words(self):
+        return [one.word for one in BadWords.objects.all()]
+
+    def censor(self, phrase, bad_words):
         """Сравнивает запрещенные слова с подготовленными фрагментами фразы."""
         error_set = set()
-        for bad_word in self.bad_words:
+        for bad_word in bad_words:
             for part in range(len(phrase)):
                 fragment = phrase[part: part + len(bad_word)]
                 if self.levenshtein_distance(fragment, bad_word) <= len(bad_word) * 0.25:
@@ -131,5 +133,7 @@ class FilterBadWords:
     def start_filtering(self, input_phrase):
         self.raw_phrase = input_phrase
         input_phrase = input_phrase.lower().replace(' ', '')
+        bad_words = self.get_bad_words()
+
         filtered_phrase = self.comparison(self.mydict, input_phrase)
-        return self.censor(filtered_phrase)
+        return self.censor(filtered_phrase, bad_words)
