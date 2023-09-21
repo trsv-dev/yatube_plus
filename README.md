@@ -48,13 +48,19 @@ git clone git@github.com:trsv-dev/yatube_plus.git
 ```
 cd yatube_plus/
 ```
-- Установите виртуальное окружение:
+- Установите виртуальное окружение (**если работаете в Linux**):
 ```
 python3.9 -m venv venv
 ```
-- Активируйте виртуальное окружение:
 ```
 source venv/bin/activate
+```
+- Установите виртуальное окружение (**если работаете в  Windows**):
+```
+python -m venv env
+```
+```
+source env/bin/activate
 ```
 - Выполните миграции:
 ```
