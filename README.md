@@ -40,6 +40,14 @@ Python 3.9
 
 Django 2.2.19
 ### Запуск проекта в dev-режиме
+- Клонировать репозиторий к себе на машину:
+```
+git clone git@github.com:trsv-dev/yatube_plus.git
+```
+- Перейдите в папку проекта:
+```
+cd yatube_plus/
+```
 - Установите виртуальное окружение:
 ```
 python3.9 -m venv venv
@@ -47,10 +55,6 @@ python3.9 -m venv venv
 - Активируйте виртуальное окружение:
 ```
 source venv/bin/activate
-```
-- Перейдите в папку проекта:
-```
-cd /yatube_plus
 ```
 - Выполните миграции:
 ```
@@ -71,6 +75,10 @@ python3 manage.py collectstatic
 ```
 иначе не будут найдены стили страниц и изображения.
 - В корне проекта найдите файл **.env.example**, переименуйте в **.env** и заполните своими данными.
+- Перейдите в папку _yatube_:
+```
+cd yatube/
+```
 - В папке с файлом manage.py выполните команду:
 ```
 python3 manage.py runserver
