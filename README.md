@@ -83,6 +83,7 @@ cd yatube/
 ```
 python3 manage.py runserver
 ```
+- Сайт доступен по адресу http://127.0.0.1:8000
 
 ### Автор:
 [trsv-dev](https://github.com/trsv-dev)
